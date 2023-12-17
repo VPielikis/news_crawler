@@ -12,8 +12,9 @@ def test_urls():
         "https://www.silute.lt/naujienos/1091",
         "https://www.silutesmuziejus.lt/home/apie-muzieju/naujienu-archyvas/",
         "https://lkca.lt/naujienos/",
-        "http://www.pamarys.eu/category/aktualijos/",
-        "https://www.silutesnaujienos.lt/lt/Temos/aktualijos/"
+        "https://www.silutesnaujienos.lt/lt/Temos/aktualijos/",
+        "http://www.pamarys.eu/category/aktualijos/"
+
     ]
 
 
