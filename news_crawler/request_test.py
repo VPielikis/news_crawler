@@ -1,8 +1,8 @@
 import requests
-def test(urls):
+def main_test(urls, custom_headers): #Pridedame custom_headers parametra
     for url in urls:
         try:
-            response = requests.get(url)
+            response = requests.get(url, headers=custom_headers)
             response.raise_for_status()
             print(f"Pavyko prisijungti prie: {url}!")
         except requests.exceptions.RequestException as e: # Gaudo bet kokias klaidas
@@ -14,4 +14,15 @@ def test_urls():
         "https://lkca.lt/naujienos/",
         "http://www.pamarys.eu/category/aktualijos/"
     ]
-    test(urls)
+
+
+    custom_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.5',
+        # Add other headers as needed
+    }
+
+    main_test(urls, custom_headers)
+
+# Iškviečiame funkciją
+test_urls()
