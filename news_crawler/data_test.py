@@ -19,41 +19,6 @@ def silutesmuziejusd_test():
     print("Paveikslėliai:", "Gauta" if paveikslėliai else "Nepavyko gauti")
     print("Data:", "Gauta" if datos else "Nepavyko gauti")
 
-def silutes_savdtest():
-    data = get("https://www.silute.lt/naujienos/1091").text
-    data = HTML(data)
-
-    # Išgauti duomenis
-    pavadinimai = data.xpath("//span[@class='news_title']/text()")
-    aprasymai = data.xpath("//span[@class='news_description']/text()")
-    datas = data.xpath("//span[@class='date']//text()")
-    paveikslėliai = data.xpath("//span[@class='image_container']/img/@src")
-
-    # Patikrinti ir spausdinti ataskaitą
-    print("Duomenys is silute.lt:")
-    print("Pavadinimai:", "Gauta" if pavadinimai else "Nepavyko gauti")
-    print("Aprašymai:", "Gauta" if aprasymai else "Nepavyko gauti")
-    print("Paveikslėliai:", "Gauta" if paveikslėliai else "Nepavyko gauti")
-    print("Data:", "Gauta" if datas else "Nepavyko gauti")
-
-
-def lkca_test():
-    data = get("https://lkca.lt/naujienos/").text
-    data = HTML(data)
-
-    # Išgauti duomenis
-    pavadinimai = data.xpath("//div[@class='post-header']/h3/a/text()")
-    aprasymai = data.xpath("//div[@class='excerpt']/text()")
-    datas = data.xpath("//div[@class='grav-wrap']/div[@class='text']/span/text()")
-    paveikslėliai = data.xpath("//span[@class='post-featured-img']/img/@src")
-
-    # Patikrinti ir spausdinti ataskaitą
-    print("Duomenys iš lkca.lt:")
-    print("Pavadinimai:", "Gauta" if pavadinimai else "Nepavyko gauti")
-    print("Aprašymai:", "Gauta" if aprasymai else "Nepavyko gauti")
-    print("Paveikslėliai:", "Gauta" if paveikslėliai else "Nepavyko gauti")
-    print("Data:", "Gauta" if datas else "Nepavyko gauti")
-
 def pamarys_test():
         url = "http://www.pamarys.eu/category/aktualijos/"
 
@@ -87,8 +52,34 @@ def pamarys_test():
             print("Nepavyko prisijungti prie puslapio. Status kodas:", response.status_code)
 
 
+def silutesnaujienos_test():
+    url = "https://www.silutesnaujienos.lt/lt/Temos/aktualijos/"
 
+    # Nustatome pasirinktines antraštes
+    custom_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.5',
+    }
 
+    response = get(url, headers=custom_headers)
+
+    if response.status_code == 200:
+        data = HTML(response.text)
+
+        # Išgauti duomenis
+        pavadinimai = data.xpath("//div[@class='p-header']/h3/a/text()")
+        aprasymai = data.xpath("//p[@class='entry-summary']/text()")
+        datas = data.xpath("//abbr[@class='date published']/@title")
+        paveikslėliai = data.xpath("//span[@class='rb-iwrap']/img/@src")
+
+        # Patikrinti ir spausdinti ataskaitą
+        print("Duomenys iš silutesnaujienos.lt:")
+        print("Pavadinimai:", "Gauta" if pavadinimai else "Nepavyko gauti")
+        print("Aprašymai:", "Gauta" if aprasymai else "Nepavyko gauti")
+        print("Data:", "Gauta" if datas else "Nepavyko gauti")
+        print("Paveikslėliai:", "Gauta" if paveikslėliai else "Nepavyko gauti")
+    else:
+        print("Nepavyko prisijungti prie puslapio. Status kodas:", response.status_code)
 
 
 

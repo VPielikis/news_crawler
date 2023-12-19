@@ -2,8 +2,7 @@ from request_test import *
 from data_test import *
 def test_data():
     silutesmuziejusd_test()
-    silutes_savdtest()
-    lkca_test()
+    silutesnaujienos_test()
     pamarys_test()
 
 def test_rq():
@@ -13,7 +12,7 @@ def test_rq():
 def testas():
     user_d = ''
     while user_d != 'n':
-        user_d = input("Ar norite paleisti test_data() funkciją? (Įveskite Y arba N): ").lower()
+        user_d = input("Patikrinti duomenų gavimą iš xPath? (Įveskite Y arba N): ").lower()
 
         if user_d == 'y':
             test_data()
@@ -25,7 +24,7 @@ def testas():
 
     user_d = ''
     while user_d != 'n':
-        user_d = input("Ar norite paleisti test_rq() funkciją? (Įveskite Y arba N): ").lower()
+        user_d = input("Patikrinti ar pavyksta prisijungti? (Įveskite Y arba N): ").lower()
 
         if user_d == 'y':
             test_rq()

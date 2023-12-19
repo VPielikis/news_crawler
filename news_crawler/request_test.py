@@ -9,9 +9,8 @@ def main_test(urls, custom_headers): #Pridedame custom_headers parametra
             print(f"Nepavyko prisijungti prie: {url}: {e}")
 def test_urls():
     urls = [
-        "https://www.silute.lt/naujienos/1091",
         "https://www.silutesmuziejus.lt/home/apie-muzieju/naujienu-archyvas/",
-        "https://lkca.lt/naujienos/",
+        "https://www.silutesnaujienos.lt/lt/Temos/aktualijos/",
         "http://www.pamarys.eu/category/aktualijos/"
 
     ]
@@ -20,7 +19,7 @@ def test_urls():
     custom_headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept-Language': 'en-US,en;q=0.5',
-        # Add other headers as needed
+
     }
 
     main_test(urls, custom_headers)
