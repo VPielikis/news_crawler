@@ -1,5 +1,6 @@
 from testai import *
 from scraper import *
+from Pandas_test import *
 
 def scrapers():
     try:
@@ -24,3 +25,4 @@ def logika():
 
 if __name__ == "__main__":
     logika()
+
