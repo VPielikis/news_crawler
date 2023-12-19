@@ -60,7 +60,8 @@ def pamarys_scraper():
                 writer = csv.writer(file)
                 writer.writerow(["Data", "Pavadinimas", "Aprašymas", "Paveikslėlis"])
 
-                for data, pavadinimas, aprasymas, paveikslėlis in zip(datas, pavadinimai, aprasymai, paveikslėliai):
+                short_data = list(zip(datas, pavadinimai, aprasymai, paveikslėliai))[:10]
+                for data, pavadinimas, aprasymas, paveikslėlis in short_data:
                     writer.writerow([data, pavadinimas, aprasymas, paveikslėlis])
             print("Naujienos išsaugotos 'pamarys.csv' faile.")
         else:
@@ -90,7 +91,9 @@ def silutes_naujienos():
                 writer = csv.writer(file)
                 writer.writerow(["Data", "Pavadinimas", "Aprašymas", "Paveikslėlis"])
 
-                for data, pavadinimas, aprasymas, paveikslėlis in zip(datas, pavadinimai, aprasymai, paveikslėliai):
+
+                short_data = list(zip(datas, pavadinimai, aprasymai, paveikslėliai))[:10]
+                for data, pavadinimas, aprasymas, paveikslėlis in short_data:
                     writer.writerow([data, pavadinimas, aprasymas, paveikslėlis])
             print("Naujienos išsaugotos 'silutesnaujienos.csv' faile.")
         else:
