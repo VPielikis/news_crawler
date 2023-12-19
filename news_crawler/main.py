@@ -14,7 +14,7 @@ def logika():
     while True:
         atsakymas = input("Ar norite gauti duomenis iš silutesmuziejus.lt, pamarys.lt, silutesnaujienos.lt? (Y/N): ").upper()
         if atsakymas == 'Y':
-            paleisti_scrapers()
+            scrapers()
             break
         elif atsakymas == 'N':
             print("Programa baigia darbą.")
