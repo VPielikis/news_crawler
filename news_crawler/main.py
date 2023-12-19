@@ -1,7 +1,7 @@
 from testai import *
 from scraper import *
 
-def paleisti_scrapers():
+def scrapers():
     try:
         silutesmuziejus_lt_scraper()
         pamarys_scraper()
@@ -10,7 +10,7 @@ def paleisti_scrapers():
         print(f"Įvyko klaida: {e}")
         testas()
 
-def paklausti_vartotojo():
+def logika():
     while True:
         atsakymas = input("Ar norite gauti duomenis iš silutesmuziejus.lt, pamarys.lt, silutesnaujienos.lt? (Y/N): ").upper()
         if atsakymas == 'Y':
@@ -23,4 +23,4 @@ def paklausti_vartotojo():
             print("Įvestas netinkamas simbolis. Prašome įvesti 'Y' arba 'N'.")
 
 if __name__ == "__main__":
-    paklausti_vartotojo()
+    logika()
