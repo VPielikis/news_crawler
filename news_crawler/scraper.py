@@ -22,8 +22,15 @@ def silutesmuziejus_lt_scraper():
                 writer = csv.writer(file)
                 writer.writerow(["Data", "Pavadinimas", "Aprašymas", "Paveikslėlis"])
 
-                for data, pavadinimas, aprasymas, paveikslėlis in zip(datas, pavadinimai, aprasymai, paveikslėliai):
+                short_data = list(zip(datas, pavadinimai, aprasymai, paveikslėliai))[:10]
+                for data, pavadinimas, aprasymas, paveikslėlis in short_data:
                     writer.writerow([data.strip(), pavadinimas.text, aprasymas.text, paveikslėlis])
+
+            #data = list(zip(datas, pavadinimai, aprasymai, paveikslėliai))[:10]
+            #for data, pavadinimas, aprasymas, paveikslėlis in data:
+            #for data, pavadinimas, aprasymas, paveikslėlis in sujungti_duomenys:
+               # for data, pavadinimas, aprasymas, paveikslėlis in zip(datas, pavadinimai, aprasymai, paveikslėliai):
+                    #writer.writerow([data.strip(), pavadinimas.text, aprasymas.text, paveikslėlis])
             print("Naujienos išsaugotos 'silutesmuziejus.csv' faile.")
         else:
             print("Nepavyko gauti duomenų.")
