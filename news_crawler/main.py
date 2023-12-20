@@ -1,6 +1,5 @@
 from testai import *
 from scraper import *
-from Pandas_test import *
 
 def scrapers():
     try:
