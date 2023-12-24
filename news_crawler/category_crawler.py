@@ -20,8 +20,12 @@ def kategoriju_crawler():
     categories_elements = driver.find_elements(By.XPATH, "//div[@class='input-wr']//div[@class='choices__item choices__item--choice choices__item--selectable' and @data-value!='']")
     categories = [element.get_attribute('data-value') for element in categories_elements if element.get_attribute('data-value')]
 
+    # Filtruoti kategorijas, pašalinant tuos, kurie yra tik skaičiai arba trumpesni nei 4 simboliai
+    filtered_categories = [cat for cat in categories if not cat.isdigit() and len(cat) > 3]
+
+
     driver.quit()
-    return categories
+    return filtered_categories
 
 
 def irasyti_i_csv(kategorijos):
