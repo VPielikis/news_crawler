@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+import csv
 
 def kategoriju_crawler():
     url = "https://rekvizitai.vz.lt/imones/"
@@ -20,7 +21,13 @@ def kategoriju_crawler():
     categories = [element.get_attribute('data-value') for element in categories_elements if element.get_attribute('data-value')]
 
     driver.quit()
+    return categories
 
-    # Atspausdinti kategorijas
-    for category in categories:
-        print(category)
+
+def irasyti_i_csv(kategorijos):
+    with open('kategorijos.csv', 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Kategorija'])
+        for kategorija in kategorijos:
+            writer.writerow([kategorija])
+    print("Kategorijos įrašytos į 'kategorijos.csv' failą.")
