@@ -1,10 +1,10 @@
 import requests
 from lxml import html
+import csv
 
-# Čia yra jūsų kategorijų sąrašas
+# Čia galima įrašyti kategorijas į sąrašą. Kategorijos išsaugotos kategorijos.csv faile
 categories = [
-    "akmens_gaminiai"]
-
+    "akumuliatoriai"]
 
 def extract_data(category, page_number):
     url = f"https://rekvizitai.vz.lt/imones/{category}/{page_number}/"
@@ -34,17 +34,26 @@ def print_data(tree):
     contact_info = tree.xpath('//div[contains(@class, "see-info")]/a/@href')
 
     for i in range(len(titles)):
-        print(f"Įmonės pavadinimas: {titles[i]}")
-        print(f"Subtitras: {subtitles[i] if i < len(subtitles) else 'N/A'}")
-        print(f"Adresas: {addresses[i] if i < len(addresses) else 'N/A'}")
-        print(f"Veiklos sritis: {activities[i] if i < len(activities) else 'N/A'}")
-        print(f"Aprašymas: {descriptions[i] if i < len(descriptions) else 'N/A'}")
-        print(f"Kontaktinė informacija: {contact_info[i] if i < len(contact_info) else 'N/A'}")
-        print("\n")
+        data = data = [
+            titles[i],
+            subtitles[i] if i < len(subtitles) else 'N/A',
+            addresses[i] if i < len(addresses) else 'N/A',
+            activities[i] if i < len(activities) else 'N/A',
+            descriptions[i] if i < len(descriptions) else 'N/A',
+            contact_info[i] if i < len(contact_info) else 'N/A'
+        ]
+        write_csv(data, 'data.csv')
 
     return True
 
+def write_csv(duomenys, failo_pavadinimas):
+    with open(failo_pavadinimas, 'a', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(duomenys)
+
 def run_data_ex():
+    headers = ["Įmonės pavadinimas", "Subtitras", "Adresas", "Veiklos sritis", "Aprašymas", "Kontaktinė informacija"]
+    write_csv(headers, 'data.csv')
 # Iteruojama per kiekvieną kategoriją ir puslapius
     for category in categories:
         page_number = 1

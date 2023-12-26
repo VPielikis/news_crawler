@@ -20,7 +20,8 @@ if atsakymas == "Y":
     irasyti_i_csv(kategorijos)
 
 
-atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų? (Y/N): ")
+atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
 if atsakymas == "Y":
         run_data_ex()
+        print("Duomenys sėkmingai gauti ir įrašyti į dara.csv failą !")
 
