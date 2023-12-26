@@ -42,6 +42,13 @@ def print_data(tree):
             descriptions[i] if i < len(descriptions) else 'N/A',
             contact_info[i] if i < len(contact_info) else 'N/A'
         ]
+        print(f"Įmonės pavadinimas: {titles[i]}")
+        print(f"Subtitras: {subtitles[i] if i < len(subtitles) else 'N/A'}")
+        print(f"Adresas: {addresses[i] if i < len(addresses) else 'N/A'}")
+        print(f"Veiklos sritis: {activities[i] if i < len(activities) else 'N/A'}")
+        print(f"Aprašymas: {descriptions[i] if i < len(descriptions) else 'N/A'}")
+        print(f"Kontaktinė informacija: {contact_info[i] if i < len(contact_info) else 'N/A'}")
+        print("\n")
         write_csv(data, 'data.csv')
 
     return True
@@ -59,3 +66,7 @@ def run_data_ex():
         page_number = 1
         while print_data(extract_data(category, page_number)):
             page_number += 1
+
+def clear_file():
+    with open('data.csv', 'w', newline='', encoding='utf-8') as file:
+        pass

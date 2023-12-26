@@ -1,5 +1,6 @@
 from category_crawler import *
 from data_ex import run_data_ex
+from data_ex import clear_file
 
 def logika(msg):
     while True:
@@ -22,6 +23,7 @@ if atsakymas == "Y":
 
 atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
 if atsakymas == "Y":
+        clear_file()
         run_data_ex()
-        print("Duomenys sėkmingai gauti ir įrašyti į dara.csv failą !")
+        print("Duomenys sėkmingai gauti ir įrašyti į data.csv failą !")
 
