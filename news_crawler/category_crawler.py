@@ -30,8 +30,6 @@ def kategoriju_crawler():
 
 def irasyti_i_csv(kategorijos):
     with open('kategorijos.csv', 'w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(['Kategorija'])
         for kategorija in kategorijos:
-            writer.writerow([kategorija])
+            file.write(f'"{kategorija}",\n')
     print("Kategorijos įrašytos į 'kategorijos.csv' failą.")
