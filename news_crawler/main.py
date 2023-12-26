@@ -1,4 +1,5 @@
-from category_crawler import *
+from category_crawler import kategoriju_crawler
+from category_crawler import irasyti_i_csv
 from data_ex import run_data_ex
 from data_ex import clear_file
 from data_ex import print_csv_file
@@ -17,9 +18,9 @@ if atsakymas == "Y":
     for kategorija in kategorijos:
         print(kategorija)
 
-atsakymas = logika("Ar norite įrašyti gautas kategorijas į CSV failą? (Y/N): ")
-if atsakymas == "Y":
-    irasyti_i_csv(kategorijos)
+    atsakymas = logika("Ar norite įrašyti gautas kategorijas į CSV failą? (Y/N): ")
+    if atsakymas == "Y":
+        irasyti_i_csv(kategorijos)
 
 
 atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
