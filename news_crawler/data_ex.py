@@ -34,6 +34,40 @@ def print_data(tree):
     contact_info = tree.xpath('//div[contains(@class, "see-info")]/a/@href')
 
     for i in range(len(titles)):
+        print(f"Įmonės pavadinimas: {titles[i]}")
+        print(f"Subtitras: {subtitles[i] if i < len(subtitles) else 'N/A'}")
+        print(f"Adresas: {addresses[i] if i < len(addresses) else 'N/A'}")
+        print(f"Veiklos sritis: {activities[i] if i < len(activities) else 'N/A'}")
+        print(f"Aprašymas: {descriptions[i] if i < len(descriptions) else 'N/A'}")
+        print(f"Kontaktinė informacija: {contact_info[i] if i < len(contact_info) else 'N/A'}")
+        print("\n")
+
+
+    return True
+
+def run_data_ex():
+# Iteruojama per kiekvieną kategoriją ir puslapius
+    for category in categories:
+        page_number = 1
+        while print_data(extract_data(category, page_number)):
+            page_number += 1
+
+
+def print_csv(tree):
+    if tree is None:
+        return False
+
+    titles = tree.xpath('//a[contains(@class, "company-title d-block")]/text()')
+    if not titles:
+        return False
+
+    subtitles = tree.xpath('//a[contains(@class, "company-subtitle d-block")]/text()')
+    addresses = tree.xpath('//div[contains(@class, "address")]/text()')
+    activities = tree.xpath('//div[contains(@class, "activities")]/text()')
+    descriptions = tree.xpath('//div[contains(@class, "description")]/text()')
+    contact_info = tree.xpath('//div[contains(@class, "see-info")]/a/@href')
+
+    for i in range(len(titles)):
         data = data = [
             titles[i],
             subtitles[i] if i < len(subtitles) else 'N/A',
@@ -42,13 +76,6 @@ def print_data(tree):
             descriptions[i] if i < len(descriptions) else 'N/A',
             contact_info[i] if i < len(contact_info) else 'N/A'
         ]
-        print(f"Įmonės pavadinimas: {titles[i]}")
-        print(f"Subtitras: {subtitles[i] if i < len(subtitles) else 'N/A'}")
-        print(f"Adresas: {addresses[i] if i < len(addresses) else 'N/A'}")
-        print(f"Veiklos sritis: {activities[i] if i < len(activities) else 'N/A'}")
-        print(f"Aprašymas: {descriptions[i] if i < len(descriptions) else 'N/A'}")
-        print(f"Kontaktinė informacija: {contact_info[i] if i < len(contact_info) else 'N/A'}")
-        print("\n")
         write_csv(data, 'data.csv')
 
     return True
@@ -58,14 +85,17 @@ def write_csv(duomenys, failo_pavadinimas):
         writer = csv.writer(file)
         writer.writerow(duomenys)
 
-def run_data_ex():
+
+
+def print_csv_file():
     headers = ["Įmonės pavadinimas", "Subtitras", "Adresas", "Veiklos sritis", "Aprašymas", "Kontaktinė informacija"]
     write_csv(headers, 'data.csv')
 # Iteruojama per kiekvieną kategoriją ir puslapius
     for category in categories:
         page_number = 1
-        while print_data(extract_data(category, page_number)):
+        while print_csv(extract_data(category, page_number)):
             page_number += 1
+
 
 def clear_file():
     with open('data.csv', 'w', newline='', encoding='utf-8') as file:
