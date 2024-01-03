@@ -4,7 +4,42 @@ import csv
 
 # Čia galima įrašyti kategorijas į sąrašą. Kategorijos išsaugotos kategorijos.csv faile
 categories = [
-    "akumuliatoriai"]
+"akmens_gaminiai",
+"akumuliatoriai",
+"antrines_zaliavos",
+"antstoliai",
+"drabuziai",
+"apsaugos_sistemos_patalpoms",
+"apskaitos_paslaugos",
+"apzeldinimas_ir_aplinkos_tvarkymas",
+"architektai",
+"atlieku_tvarkymas",
+"audiniai_patalyne",
+"auditas",
+"aukstalipiu_paslaugos",
+"aukstesniojo_ir_profesinio_mokymo_istaigos",
+"aukstojo_mokslo_istaigos",
+"autobusu_mikroautobusu_nuoma",
+"autokosmetika_medziagos",
+"automatizavimas_automatika",
+"autodalys",
+"automobiliu_garso_ir_apsaugos_sistemos",
+"autonuoma",
+"automobiliu_parkavimas",
+"automobiliu_pervezimas",
+"automobiliu_plovyklos",
+"automobiliu_prekyba",
+"automobiliu_saldymo_iranga",
+"automobiliu_stiklai",
+"automobiliu_technine_apziura",
+"autosavartynai",
+"autoservisai",
+"avalyne",
+"avarines_tarnybos",
+"azartiniai_losimai_kazino",
+"baldai_gamyba",
+"baldai"
+]
 
 def extract_data(category, page_number):
     url = f"https://rekvizitai.vz.lt/imones/{category}/{page_number}/"
