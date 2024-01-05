@@ -1,6 +1,7 @@
 import requests
 from lxml import html
 import csv
+import time
 
 # Čia galima įrašyti kategorijas į sąrašą. Kategorijos išsaugotos kategorijos.csv faile
 categories = [
@@ -80,11 +81,19 @@ def print_data(tree):
 
     return True
 
-def run_data_ex():
-# Iteruojama per kiekvieną kategoriją ir puslapius
+def run_data_ex(time_limit):
+    start_time = time.time()
+
     for category in categories:
         page_number = 1
-        while print_data(extract_data(category, page_number)):
+        while True:
+            current_time = time.time()
+            if current_time - start_time > time_limit:
+                print("Laiko limitas pasiektas.")
+                return  # Grįžtama iš funkcijos, jei pasiekiamas laiko limitas
+
+            if not print_data(extract_data(category, page_number)):
+                break  # Baigiamas ciklas, jei nėra daugiau duomenų
             page_number += 1
 
 

@@ -4,6 +4,15 @@ from data_ex import run_data_ex
 from data_ex import clear_file
 from data_ex import print_csv_file
 
+
+def time_limit_setup(msg):
+    while True:
+        try:
+            time_limit = int(input(msg))
+            return time_limit
+        except ValueError:
+            print("Prašome įvesti skaičių.")
+
 def logika(msg):
     while True:
         atsakymas = input(msg).upper()
@@ -25,7 +34,8 @@ if atsakymas == "Y":
 
 atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
 if atsakymas == "Y":
-        run_data_ex()
+    time_limit = time_limit_setup("Nustatykite laiko limitą duomenų išgavimui (sekundėmis): ")
+    run_data_ex(time_limit)
 
 atsakymas = logika("Ar norite įrašyti duomenis į csv failą ? (Y/N): ")
 if atsakymas == "Y":
