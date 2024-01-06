@@ -113,12 +113,16 @@ def clear_file():
     with open('data.csv', 'w', newline='', encoding='utf-8') as file:
         pass
 
+#JSON PROGRAMOS DALIS
+
 
 def print_json(tree, failo_pavadinimas='data.json'):
     if tree is None:
         return False
 
     titles = tree.xpath('//a[contains(@class, "company-title d-block")]/text()')
+    if not titles: return False # Jei nėra įmonių pavadinimų, reiškia puslapyje nėra duomenų
+   # titles = tree.xpath('//a[contains(@class, "company-title d-block")]/text()')
     subtitles = tree.xpath('//a[contains(@class, "company-subtitle d-block")]/text()')
     addresses = tree.xpath('//div[contains(@class, "address")]/text()')
     activities = tree.xpath('//div[contains(@class, "activities")]/text()')
@@ -128,12 +132,12 @@ def print_json(tree, failo_pavadinimas='data.json'):
     data_list = []
     for i in range(len(titles)):
         data = {
-            "Įmonės pavadinimas": titles[i],
-            "Subtitras": subtitles[i] if i < len(subtitles) else 'N/A',
-            "Adresas": addresses[i] if i < len(addresses) else 'N/A',
-            "Veiklos sritis": activities[i] if i < len(activities) else 'N/A',
-            "Aprašymas": descriptions[i] if i < len(descriptions) else 'N/A',
-            "Kontaktinė informacija": contact_info[i] if i < len(contact_info) else 'N/A'
+            "Įmonės pavadinimas": titles[i].strip(),
+            "Subtitras": subtitles[i].strip() if i < len(subtitles) else 'N/A',
+            "Adresas": addresses[i].strip() if i < len(addresses) else 'N/A',
+            "Veiklos sritis": activities[i].strip() if i < len(activities) else 'N/A',
+            "Aprašymas": descriptions[i].strip() if i < len(descriptions) else 'N/A',
+            "Kontaktinė informacija": contact_info[i].strip() if i < len(contact_info) else 'N/A'
         }
         data_list.append(data)
 
@@ -142,8 +146,13 @@ def print_json(tree, failo_pavadinimas='data.json'):
 
     return True
 
+
 def run_data_extracion():
     for category in categories:
         page_number = 1
         while print_json(extract_data(category, page_number)):
             page_number += 1
+
+def clear_json_file(failo_pavadinimas='data.json'):
+    with open(failo_pavadinimas, 'w', encoding='utf-8') as file:
+        pass
