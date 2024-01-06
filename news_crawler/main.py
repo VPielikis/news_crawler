@@ -22,28 +22,35 @@ def logika(msg):
             return atsakymas
         print("Prašome įvesti 'Y' arba 'N'.")
 
-atsakymas = logika("Ar norite pradėti kategorijų gavimą iš tinklapio? (Y/N): ")
-if atsakymas == "Y":
-    kategorijos = kategoriju_crawler()
-    print("Gautos kategorijos:")
-    for kategorija in kategorijos:
-        print(kategorija)
 
-    atsakymas = logika("Ar norite įrašyti gautas kategorijas į CSV failą? (Y/N): ")
+try:
+    atsakymas = logika("Ar norite pradėti kategorijų gavimą iš tinklapio? (Y/N): ")
     if atsakymas == "Y":
-        irasyti_i_csv(kategorijos)
+        kategorijos = kategoriju_crawler()
+        print("Gautos kategorijos:")
+        for kategorija in kategorijos:
+            print(kategorija)
 
+        atsakymas = logika("Ar norite įrašyti gautas kategorijas į CSV failą? (Y/N): ")
+        if atsakymas == "Y":
+            irasyti_i_csv(kategorijos)
 
-atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
-if atsakymas == "Y":
-    time_limit = time_limit_setup("Nustatykite laiko limitą duomenų išgavimui (sekundėmis): ")
-    run_data_ex(time_limit)
+except Exception as e:
+        print(f"Įvyko klaida: {e}")
 
-atsakymas = logika("Ar norite įrašyti duomenis į csv ir Json failą ? (Y/N): ")
-if atsakymas == "Y":
-        clear_file()
-        print_csv_file()
-        clear_json_file()
-        run_data_extracion()
-        print("Duomenys sėkmingai gauti ir įrašyti į data.csv failą !")
+try:
+    atsakymas = logika("Ar norite pradėti duomenų išgavimą iš pasirinktų kategorijų ? (Y/N): ")
+    if atsakymas == "Y":
+        time_limit = time_limit_setup("Nustatykite laiko limitą duomenų išgavimui (sekundėmis): ")
+        run_data_ex(time_limit)
 
+    atsakymas = logika("Ar norite įrašyti duomenis į csv ir Json failą ? (Y/N): ")
+    if atsakymas == "Y":
+            clear_file()
+            print_csv_file()
+            clear_json_file()
+            run_data_extracion()
+            print("Duomenys sėkmingai gauti ir įrašyti į data.csv failą !")
+
+except Exception as e:
+    print(f"Įvyko klaida: {e}")
