@@ -6,8 +6,14 @@ import json
 
 # Čia galima įrašyti kategorijas į sąrašą. Kategorijos išsaugotos kategorijos.csv faile
 categories = [
-"akmens_gaminiai",
-"akumuliatoriai"
+"drabuziai",
+"apsaugos_sistemos_patalpoms",
+"apskaitos_paslaugos",
+"apzeldinimas_ir_aplinkos_tvarkymas",
+"architektai",
+"atlieku_tvarkymas",
+"audiniai_patalyne",
+"auditas"
 ]
 
 def extract_data(category, page_number):

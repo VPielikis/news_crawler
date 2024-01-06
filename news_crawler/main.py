@@ -39,10 +39,10 @@ if atsakymas == "Y":
     time_limit = time_limit_setup("Nustatykite laiko limitą duomenų išgavimui (sekundėmis): ")
     run_data_ex(time_limit)
 
-atsakymas = logika("Ar norite įrašyti duomenis į csv failą ? (Y/N): ")
+atsakymas = logika("Ar norite įrašyti duomenis į csv ir Json failą ? (Y/N): ")
 if atsakymas == "Y":
-        #clear_file()
-       # print_csv_file()
+        clear_file()
+        print_csv_file()
         clear_json_file()
         run_data_extracion()
         print("Duomenys sėkmingai gauti ir įrašyti į data.csv failą !")

@@ -1,12 +1,16 @@
 [tool.poetry]
 name = "news-crawler"
-version = "0.1.0"
+version = "1.0"
 description = ""
-authors = ["Fujitsu <alchemikaslt1@gmail.com>"]
+authors = ["Vilmantas <alchemikaslt1@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+selenium = "^4.16.0"
+chromedrivermanager = "^0.0.1"
+webdriver-manager = "^4.0.1"
+lxml = "^5.0.1"
 
 
 [build-system]
