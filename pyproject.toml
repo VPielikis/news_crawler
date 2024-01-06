@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "news-crawler_vpt"
+name = "news-crawler"
 version = "1.0"
 description = ""
 authors = ["Vilmantas <alchemikaslt1@gmail.com>"]
