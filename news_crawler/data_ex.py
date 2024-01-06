@@ -2,44 +2,12 @@ import requests
 from lxml import html
 import csv
 import time
+import json
 
 # Čia galima įrašyti kategorijas į sąrašą. Kategorijos išsaugotos kategorijos.csv faile
 categories = [
 "akmens_gaminiai",
-"akumuliatoriai",
-"antrines_zaliavos",
-"antstoliai",
-"drabuziai",
-"apsaugos_sistemos_patalpoms",
-"apskaitos_paslaugos",
-"apzeldinimas_ir_aplinkos_tvarkymas",
-"architektai",
-"atlieku_tvarkymas",
-"audiniai_patalyne",
-"auditas",
-"aukstalipiu_paslaugos",
-"aukstesniojo_ir_profesinio_mokymo_istaigos",
-"aukstojo_mokslo_istaigos",
-"autobusu_mikroautobusu_nuoma",
-"autokosmetika_medziagos",
-"automatizavimas_automatika",
-"autodalys",
-"automobiliu_garso_ir_apsaugos_sistemos",
-"autonuoma",
-"automobiliu_parkavimas",
-"automobiliu_pervezimas",
-"automobiliu_plovyklos",
-"automobiliu_prekyba",
-"automobiliu_saldymo_iranga",
-"automobiliu_stiklai",
-"automobiliu_technine_apziura",
-"autosavartynai",
-"autoservisai",
-"avalyne",
-"avarines_tarnybos",
-"azartiniai_losimai_kazino",
-"baldai_gamyba",
-"baldai"
+"akumuliatoriai"
 ]
 
 def extract_data(category, page_number):
@@ -144,3 +112,38 @@ def print_csv_file():
 def clear_file():
     with open('data.csv', 'w', newline='', encoding='utf-8') as file:
         pass
+
+
+def print_json(tree, failo_pavadinimas='data.json'):
+    if tree is None:
+        return False
+
+    titles = tree.xpath('//a[contains(@class, "company-title d-block")]/text()')
+    subtitles = tree.xpath('//a[contains(@class, "company-subtitle d-block")]/text()')
+    addresses = tree.xpath('//div[contains(@class, "address")]/text()')
+    activities = tree.xpath('//div[contains(@class, "activities")]/text()')
+    descriptions = tree.xpath('//div[contains(@class, "description")]/text()')
+    contact_info = tree.xpath('//div[contains(@class, "see-info")]/a/@href')
+
+    data_list = []
+    for i in range(len(titles)):
+        data = {
+            "Įmonės pavadinimas": titles[i],
+            "Subtitras": subtitles[i] if i < len(subtitles) else 'N/A',
+            "Adresas": addresses[i] if i < len(addresses) else 'N/A',
+            "Veiklos sritis": activities[i] if i < len(activities) else 'N/A',
+            "Aprašymas": descriptions[i] if i < len(descriptions) else 'N/A',
+            "Kontaktinė informacija": contact_info[i] if i < len(contact_info) else 'N/A'
+        }
+        data_list.append(data)
+
+    with open(failo_pavadinimas, 'a', encoding='utf-8') as file:
+        json.dump(data_list, file, ensure_ascii=False, indent=4)
+
+    return True
+
+def run_data_extracion():
+    for category in categories:
+        page_number = 1
+        while print_json(extract_data(category, page_number)):
+            page_number += 1

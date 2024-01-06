@@ -3,6 +3,7 @@ from category_crawler import irasyti_i_csv
 from data_ex import run_data_ex
 from data_ex import clear_file
 from data_ex import print_csv_file
+from data_ex import run_data_extraction
 
 
 def time_limit_setup(msg):
@@ -39,7 +40,8 @@ if atsakymas == "Y":
 
 atsakymas = logika("Ar norite įrašyti duomenis į csv failą ? (Y/N): ")
 if atsakymas == "Y":
-        clear_file()
-        print_csv_file()
+       # clear_file()
+      #  print_csv_file()
+        run_data_extraction()
         print("Duomenys sėkmingai gauti ir įrašyti į data.csv failą !")
 
